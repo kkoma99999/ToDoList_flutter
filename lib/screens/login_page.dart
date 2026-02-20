@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/auth/auth_service.dart';
 import 'package:flutter_application_1/screens/register_page.dart';
 
@@ -46,6 +46,7 @@ class _LoginPageState extends State<LoginPage> {
           decoration: const InputDecoration(labelText: "Email")),
           //password
           TextField(controller: _passwordController,
+          obscureText: true,
           decoration: const InputDecoration(labelText: "Password")),
 
           const SizedBox(height: 12,),
@@ -58,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
               , MaterialPageRoute(builder: (context) => const RegisterPage()
               )),
            
-             child:const Center(child: Text("Dont have an account? Sing Up")),
+             child:const Center(child: Text("Don't have an account? Sign Up")),
           )
           
         ],
