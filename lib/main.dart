@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_application_1/auth/auth_gate.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return const MaterialApp(
       home: AuthGate(),
     );
