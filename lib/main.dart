@@ -6,8 +6,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 void main() async {
   //SUPARBASE 
   await Supabase.initialize(
-    url: 'https://dtvkaohqbtrxindvvnjg.supabase.co',
-    anonKey: 'sb_publishable_GTPxFhQDgABICOp-7zptcg_KMhaKu_3',
+    url: 'https://mkjhrgwiuegyjoldhzim.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ramhyZ3dpdWVneWpvbGRoemltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MDYzMTQsImV4cCI6MjA4NTI4MjMxNH0.oGSQDRNBQ7KRxpqY7GY_buzR5DUFQDuuca9ABJO8RT0',
   );
 
   runApp(const MyApp());
@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       home: AuthGate(),
     );
+
     
   }
 }

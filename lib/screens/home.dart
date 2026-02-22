@@ -5,6 +5,7 @@ import '../constants/colors.dart';
 import '../widgets/todo_item.dart';
 import '../screens/profile_page.dart';
 import '../screens/settings_page.dart';
+import '../services/todo_service.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -14,14 +15,33 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final todosList = ToDo.todoList();
+  final TodoService _todoService = TodoService();
+  List<ToDo> todosList = [];
   List<ToDo> _foundToDo = [];
   final _todoController = TextEditingController();
+  bool _isLoading = true;
 
   @override
   void initState() {
-    _foundToDo = todosList;
     super.initState();
+    _loadTodos();
+  }
+
+  Future<void> _loadTodos() async {
+    setState(() => _isLoading = true);
+    try {
+      final todos = await _todoService.fetchTodos();
+      setState(() {
+        todosList = todos;
+        _foundToDo = todos;
+        _isLoading = false;
+      });
+    } catch (e) {
+      print('Error loading todos: $e');
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   @override
@@ -39,7 +59,9 @@ class _HomeState extends State<Home> {
             child: Column(
               children: [
                 searchBox(),
-                Expanded(
+                _isLoading
+                    ? Center(child: CircularProgressIndicator())
+                    : Expanded(
                   child: ListView(
                     children: [
                       Container(
@@ -130,26 +152,21 @@ class _HomeState extends State<Home> {
     );
   }
 
-  void _handleToDoChange(ToDo todo) {
-    setState(() {
-      todo.isDone = !todo.isDone;
-    });
+  void _handleToDoChange(ToDo todo) async {
+    await _todoService.updateTodo(todo.id!, !todo.isDone);
+    _loadTodos();
   }
 
-  void _deleteToDoItem(String id) {
-    setState(() {
-      todosList.removeWhere((item) => item.id == id);
-    });
+  void _deleteToDoItem(String id) async {
+    await _todoService.deleteTodo(id);
+    _loadTodos();
   }
 
-  void _addToDoItem(String toDo) {
-    setState(() {
-      todosList.add(ToDo(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        todoText: toDo,
-      ));
-    });
+  void _addToDoItem(String toDo) async {
+    if (toDo.isEmpty) return;
+    await _todoService.addTodo(toDo);
     _todoController.clear();
+    _loadTodos();
   }
 
   void _runFilter(String enteredKeyword) {
