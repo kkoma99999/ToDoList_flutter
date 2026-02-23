@@ -8,7 +8,6 @@ class ToDo {
     required this.todoText,
     this.isDone = false,
   });
-
   factory ToDo.fromJson(Map<String, dynamic> json) {
     return ToDo(
       id: json['id'],
