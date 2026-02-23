@@ -22,30 +22,16 @@ A Flutter ToDo List application with Supabase for authentication and data storag
 
 | Login | Sign Up | Home |
 |-------|---------|------|
-| ![Login](screenshots/login.png) | ![Sign Up](screenshots/signup.png) | ![Home](screenshots/home.png) |
+| ![Login](screenshots/screenshots/login.png) | ![Sign Up](screenshots/screenshots/signup.png) | ![Home](screenshots/screenshots/home.png) |
 
 | Profile | Settings |
 |---------|----------|
-| ![Profile](screenshots/profile.png) | ![Settings](screenshots/settings.png) |
+| ![Profile](screenshots/screenshots/profile.png) | ![Settings](screenshots/screenshots/menu.png) |
 
-## Database
 
-![Database](screenshots/database.png)
 
 ## Tech Stack
 
 - Flutter & Dart
 - Supabase (Auth + Database)
 
-## Project Structure
-
-```
-lib/
-├── auth/          (auth_gate, auth_service)
-├── constants/     (colors)
-├── model/         (todo)
-├── screens/       (home, login, register, profile, settings)
-├── services/      (todo_service)
-├── widgets/       (todo_item)
-└── main.dart
-```
